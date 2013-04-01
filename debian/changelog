@@ -1,3 +1,15 @@
+gnome-shell (3.8.0.1-2blankon1) suroboyo; urgency=low
+
+  * debian/control.in: Add gir1.2-telepathylogger-0.2 runtime depend.
+
+ -- Aris Febrianto <ariesfebrianto@gmail.com>  Mon, 01 Apr 2013 18:25:09 +0700
+
+gnome-shell (3.8.0.1-2) experimental; urgency=low
+
+  * debian/control.in: Add gir1.2-telepathylogger-0.2 runtime depend
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 31 Mar 2013 22:36:06 +0200
+
 gnome-shell (3.8.0.1-1blankon1) suroboyo; urgency=low
 
   * New upstream release.
