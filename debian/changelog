@@ -1,3 +1,29 @@
+gnome-shell (3.8.3-1blankon1) suroboyo; urgency=low
+
+  * New upstream release.
+
+ -- Aris Febrianto <ariesfebrianto@gmail.com>  Mon, 10 Jun 2013 21:43:30 +0000
+
+gnome-shell (3.8.3-1) experimental; urgency=low
+
+  [ Jeremy Bicha ]
+  * debian/control.in:
+    - Don't recommend gnome-session-fallback
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Bump minimum gir1.2-gtk-3.0 dependency.
+      Thanks to Frederik Himpe <fhimpe@telenet.be>.
+  * New upstream release.
+  * debian/control.in:
+    + Bump build dependencies.
+  * debian/patches/series:
+    + Disable 30-remoteMenu-Prevent-the-shell-from-becoming-unrespons.patch,
+      it conflicts with changes in the new version and may not be necessary
+      anymore.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 08 Jun 2013 19:05:08 +0200
+
 gnome-shell (3.8.2-1blankon1) suroboyo; urgency=low
 
   * New upstream release.
