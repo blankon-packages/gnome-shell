@@ -1,0 +1,67 @@
+From d3cd4e193c815b611ad7ca0ae36b322f2f6ed0d2 Mon Sep 17 00:00:00 2001
+From: Rico Tzschichholz <ricotz@ubuntu.com>
+Date: Tue, 3 Sep 2013 18:18:29 +0200
+Subject: [PATCH] build: Fix linker errors on Debian/Ubuntu
+
+---
+ docs/reference/shell/Makefile.am | 2 +-
+ src/Makefile.am                  | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/docs/reference/shell/Makefile.am b/docs/reference/shell/Makefile.am
+index 3abb8fe..588e72b 100644
+--- a/docs/reference/shell/Makefile.am
++++ b/docs/reference/shell/Makefile.am
+@@ -112,7 +112,7 @@ expand_content_files=
+ # e.g. GTKDOC_CFLAGS=-I$(top_srcdir) -I$(top_builddir) $(GTK_DEBUG_FLAGS)
+ # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
+ GTKDOC_CFLAGS=$(GNOME_SHELL_CFLAGS)
+-GTKDOC_LIBS=$(GNOME_SHELL_LIBS) $(BLUETOOTH_LIBS) $(top_builddir)/src/libgnome-shell.la
++GTKDOC_LIBS=$(GNOME_SHELL_LIBS) $(BLUETOOTH_LIBS) $(top_builddir)/src/libgnome-shell-menu.la $(top_builddir)/src/libgnome-shell-base.la $(top_builddir)/src/libgnome-shell.la
+ 
+ # This includes the standard gtk-doc make rules, copied by gtkdocize.
+ include $(top_srcdir)/gtk-doc.make
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 71b347c..8041052 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -186,7 +186,7 @@ gnome_shell_CPPFLAGS = \
+ 
+ # Here, and after, we repeat mutter and bluetooth libraries just for the rpath
+ # The dependency is already pulled in by libtool
+-gnome_shell_LDADD = libgnome-shell.la libgnome-shell-js.la $(MUTTER_LIBS) $(BLUETOOTH_LIBS)
++gnome_shell_LDADD = libgnome-shell.la libgnome-shell-js.la $(GNOME_SHELL_LIBS) $(MUTTER_LIBS) $(BLUETOOTH_LIBS)
+ gnome_shell_DEPENDENCIES = libgnome-shell.la
+ 
+ if HAVE_MUTTER_WAYLAND
+@@ -199,7 +199,7 @@ gnome_shell_wayland_CPPFLAGS = \
+ 	$(MUTTER_WAYLAND_CFLAGS) \
+ 	$(gnome_shell_cflags)
+ 
+-gnome_shell_wayland_LDADD = libgnome-shell-wayland.la libgnome-shell-js.la $(MUTTER_WAYLAND_LIBS) $(BLUETOOTH_LIBS)
++gnome_shell_wayland_LDADD = libgnome-shell-wayland.la libgnome-shell-js.la $(GNOME_SHELL_LIBS) $(MUTTER_WAYLAND_LIBS) $(BLUETOOTH_LIBS)
+ gnome_shell_wayland_DEPENDENCIES = libgnome-shell-wayland.la
+ endif HAVE_MUTTER_WAYLAND
+ 
+@@ -253,7 +253,7 @@ gnome_shell_perf_helper_LDADD = $(SHELL_PERF_HELPER_LIBS)
+ noinst_PROGRAMS += run-js-test
+ 
+ run_js_test_CPPFLAGS = $(MUTTER_CFLAGS) $(gnome_shell_cflags)
+-run_js_test_LDADD = libgnome-shell.la $(MUTTER_LIBS) $(BLUETOOTH_LIBS)
++run_js_test_LDADD = libgnome-shell.la $(GNOME_SHELL_JS_LIBS) $(MUTTER_LIBS) $(BLUETOOTH_LIBS)
+ run_js_test_LDFLAGS = -export-dynamic
+ 
+ run_js_test_SOURCES =			\
+@@ -301,7 +301,7 @@ libgnome_shell_base_la_LIBADD = $(libgnome_shell_libadd)
+ libgnome_shell_base_la_CPPFLAGS = $(gnome_shell_cflags)
+ 
+ libgnome_shell_la_LDFLAGS = $(libgnome_shell_ldflags)
+-libgnome_shell_la_LIBADD = $(MUTTER_LIBS) libgnome-shell-base.la
++libgnome_shell_la_LIBADD = $(GNOME_SHELL_LIBS) $(MUTTER_LIBS) libgnome-shell-base.la
+ libgnome_shell_la_CPPFLAGS = $(MUTTER_CFLAGS) $(gnome_shell_cflags)
+ 
+ if HAVE_MUTTER_WAYLAND
+-- 
+1.8.3.2
+
+

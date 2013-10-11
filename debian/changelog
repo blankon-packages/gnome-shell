@@ -1,8 +1,74 @@
-gnome-shell (3.8.3-1blankon1) suroboyo; urgency=low
+gnome-shell (3.10.0.1-0blankon1) suroboyo; urgency=medium
 
+  * New upstream release
+  * debian/control.in: Add dependency on gir1.2-atspi-2.0 its now required
+    for magnifier.js 
+  * source_gnome_shell.py: Now we have upstart user sessions most
+    logging goes into the gnome-session.log, so add this to the
+    apport hook.
+  * debian/control.in: Bump b-d on mutter
+  * debian/patches: 
+    - revert-power-dbus-name-update.patch, revert-input-source-changes.patch:
+      Dropped for build against gnome-setting-daemon 3.8+
+    - build-fixes.patch: Dropped included in new version
+  * debian/patches/11-no-gettext.patch: Dropped, applied in new version
+  [Rico Tzschichholz]
+  * debian/patches/build_fixes.patch
+  * debian/patches/revert-disable-periodic-gc.patch: this is safe to re-enable with mozjs17
+  * debian/watch: watch for unstable releases
+  * debian/control.in: bump mutter depends
+  * debian/control.in: 
+    - bump depends on mutter, gjs, glib-2.0 and gsettings-desktop-schemas
+    - depend on libgdm instead of gdm
+  * debian/patches: Dropped git patches,
+    - git_relock_screen_after_crash.patch
+    - git-dont-crash-for-unstaged-widgets.patch
+    - revert_new_bluetooth.patch, revert changes for Bluez5
+
+ -- Rahman Yusri Aftian <aftian@di.blankon.in>  Fri, 11 Oct 2013 21:51:03 +0700
+
+gnome-shell (3.8.4-3) experimental; urgency=low
+
+  * debian/rules:
+    + Explicitly enable NetworkManager support on linux. Closes: #725760.
+  * debian/patches/10-make-NetworkManager-optional.patch:
+    + Drop gnome-keyring-1 check, leftover from the 3.4 patch.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 08 Oct 2013 17:53:24 +0200
+
+gnome-shell (3.8.4-2) experimental; urgency=low
+
+  * debian/patches/10-make-NetworkManager-optional.patch:
+    + Updated from gentoo package for the new version, apply the patch
+      again to fix the build on !linux. Closes: #692049.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 06 Oct 2013 11:38:30 +0200
+
+gnome-shell (3.8.4-1) experimental; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Add gkbd-capplet back to gnome-shell's recommends. It was dropped
+      in 3.7.92-1 but the shell's keyboard layout switcher uses it to
+      display the layout in a window.
+
+  [ Jeremy Bicha ]
+  * debian/patches/git_relock_screen_after_crash.patch:
+    + Backport fix to ensure session is locked after crash
+  * debian/control.in:
+    - Update homepage
+    - Drop obsolete gconf dependency
+
+  [ Emilio Pozuelo Monfort ]
   * New upstream release.
 
- -- Aris Febrianto <ariesfebrianto@gmail.com>  Mon, 10 Jun 2013 21:43:30 +0000
+  [ Laurent Bigonville ]
+  * debian/control.in: Bump gir1.2-ibus-1.0 dependency to 1.5.2, this is
+    needed for the new ibus_bus_new_async() API.
+  * debian/control.in: Bump Standards-Version to 3.9.4 (no further changes)
+  * debian/gnome-shell.lintian-overrides: Adjust override
+
+ -- Laurent Bigonville <bigon@debian.org>  Sat, 24 Aug 2013 14:52:18 +0200
 
 gnome-shell (3.8.3-1) experimental; urgency=low
 
@@ -24,12 +90,6 @@ gnome-shell (3.8.3-1) experimental; urgency=low
 
  -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 08 Jun 2013 19:05:08 +0200
 
-gnome-shell (3.8.2-1blankon1) suroboyo; urgency=low
-
-  * New upstream release.
-
- -- Aris Febrianto <ariesfebrianto@gmail.com>  Mon, 27 May 2013 02:44:56 +0700
-
 gnome-shell (3.8.2-1) experimental; urgency=low
 
   * New upstream release.
@@ -37,12 +97,6 @@ gnome-shell (3.8.2-1) experimental; urgency=low
       - Update mutter dependencies.
 
  -- Emilio Pozuelo Monfort <pochu@debian.org>  Fri, 24 May 2013 17:34:32 +0200
-
-gnome-shell (3.8.1-2blankon1) suroboyo; urgency=low
-
-  * New upstream release. 
-
- -- Aris Febrianto <ariesfebrianto@gmail.com>  Tue, 23 Apr 2013 23:57:09 +0700
 
 gnome-shell (3.8.1-2) experimental; urgency=low
 
@@ -55,11 +109,12 @@ gnome-shell (3.8.1-2) experimental; urgency=low
 
  -- Simon McVittie <smcv@debian.org>  Mon, 22 Apr 2013 11:17:11 +0100
 
-gnome-shell (3.8.0.1-2blankon1) suroboyo; urgency=low
+gnome-shell (3.8.1-1) experimental; urgency=low
 
-  * debian/control.in: Add gir1.2-telepathylogger-0.2 runtime depend.
+  * New upstream release
+  * debian/control.in: Update mutter depends to 3.8.1
 
- -- Aris Febrianto <ariesfebrianto@gmail.com>  Mon, 01 Apr 2013 18:25:09 +0700
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 19 Apr 2013 23:45:29 +0200
 
 gnome-shell (3.8.0.1-2) experimental; urgency=low
 
@@ -67,23 +122,11 @@ gnome-shell (3.8.0.1-2) experimental; urgency=low
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sun, 31 Mar 2013 22:36:06 +0200
 
-gnome-shell (3.8.0.1-1blankon1) suroboyo; urgency=low
-
-  * New upstream release.
-
- -- Aris Febrianto <ariesfebrianto@gmail.com>  Fri, 29 Mar 2013 15:27:50 +0700
-
 gnome-shell (3.8.0.1-1) experimental; urgency=low
 
   * New upstream release.
 
  -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 27 Mar 2013 19:12:49 +0100
-
-gnome-shell (3.8.0-1blankon1) suroboyo; urgency=low
-
-  * New upstream release
-
- -- Mahyuddin Idram Ahmad <dotovr@di.blankon.in>  Wed, 27 Mar 2013 14:19:58 +0700
 
 gnome-shell (3.8.0-1) experimental; urgency=low
 

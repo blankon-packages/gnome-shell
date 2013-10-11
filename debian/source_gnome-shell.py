@@ -27,6 +27,7 @@ def add_info(report):
     report['DisplayManager'] = result
 
     HOME = os.path.expanduser("~")
+    attach_file_if_exists(report, HOME+'/.cache/upstart/gnome-session.log',key='gnomeSessionLog')
     if result == 'gdm':
         attach_file_if_exists(report, HOME+'/.cache/gdm/session.log',key='gdmSessionLog')
     else:   
