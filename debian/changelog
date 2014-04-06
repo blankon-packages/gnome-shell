@@ -1,3 +1,58 @@
+gnome-shell (3.12.0-1blankon1) tambora; urgency=medium
+
+  * BUMP libgnome-desktop-3-dev
+  * Drop linux-any
+
+ -- Aan Yustian <aftian@localhost>  Sun, 06 Apr 2014 17:05:30 +0700
+
+gnome-shell (3.12.0-1) experimental; urgency=low
+
+  [ Laurent Bigonville ]
+  * Drop debian/patches/40_change-pam-name-to-match-gdm.patch and adjust
+    Breaks against gdm3 package, pam modules in gdm3 package have been renamed
+    back to upstream's names
+
+  [ Andreas Henriksson ]
+  * New upstream release.
+  * Update build-dependencies according to configure.ac changes:
+    - drop libgnome-menu-3-dev
+    - bump gjs 1.39.0
+    - bump clutter 1.15.90
+    - bump mutter 3.11.91
+  * debian/rules: add --enable-systemd when building on linux
+  * Build-depend on libsystemd-journal-dev [linux-any] for the above.
+  * Have quilt refresh patches.
+  * Add build-dependency on libgnome-menu-3-dev
+    - need GMenu-3.0.gir
+  * Bump glib2.0 build-dependency to 2.39.90 
+    - code uses new g_app_info_monitor*
+  * Bump gsettings-desktop-schemas {build-,}dependency to 3.11
+    - needs new key at runtime
+  * Bump gir1.2-clutter-1.0 dependency to 1.17
+    - needs Clutter.GestureTriggerEdge
+  * Bump gir1.2-glib-1.0 dependency to 1.39.90-4~
+    - needs Gio.DesktopAppInfo.search
+
+  [ Simon McVittie ]
+  * debian/patches/42-Specifically-ask-for-Telepathy-0.x.patch:
+    + Don't attempt to use the parallel-installable Telepathy 1.0 when
+      that gets uploaded, if it happens to be installed.
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Bump gir1.2-mutter-3.0 dependency to >= 3.12.
+  * debian/patches/41-handle-logind-fail.patch:
+    + Gracefully handle logind not creating our session by falling back
+      to ConsoleKit. This can happen when running on a kernel without
+      cgroups support. Closes: #729877. Patch originally applied to
+      3.8.4-5 but still relevant.
+
+  [ Pedro Beja ]
+  * Update package description (Closes: #689183)
+
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 04 Apr 2014 21:38:35 +0200
+
 gnome-shell (3.10.0.1-0blankon1) suroboyo; urgency=medium
 
   * New upstream release

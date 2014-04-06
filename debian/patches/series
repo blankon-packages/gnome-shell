@@ -1,6 +1,5 @@
+#10-make-NetworkManager-optional.patch
 27-nm-libexec-path.patch
-#40_change-pam-name-to-match-gdm.patch
-#revert-suspend-break.patch
-revert-notification-settings-link.patch
-revert_new_bluetooth.patch
-revert-disable-periodic-gc.patch
+#30-remoteMenu-Prevent-the-shell-from-becoming-unrespons.patch
+41-handle-logind-fail.patch
+42-Specifically-ask-for-Telepathy-0.x.patch
